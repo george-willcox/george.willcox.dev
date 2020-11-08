@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <link rel='stylesheet' href='../../styles/style.css'>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>File Editor</title>
+</head>
+
+<body>
+
+    <div class='Header'>
+        <h1>File Editor</h1>
+    </div>
+
+    <div class='Navigation'>
+        <ul style='list-style-type: none'>
+            <li><a href='../../index.html'>Home</a></li>
+            <li><a class='active' href='../projects.html'>Projects</a></li>
+            <li style='float:right'><a href='../../contact/contact.html'>Contact</a></li>
+        </ul>
+    </div>
+
+    <div class='Main'>
+        <h2>Contents:</h2>
+
+        <ul>
+            <li><a href='#introduction'>Introduction</a></li>
+            <li><a href='#code'>Code</a></li>
+        </ul>
+
+        <h2><a name='introduction' id='introduction'></a>Introduction:</h2>
+
+        <p>
+            This is a short script designed to open text files.
+
+            It has options to read files, overwrite files, create new files, and append existing files.
+        </p>
+
+        <h2><a name='code' id='code'></a>Code:</h2>
+
+        <p>
+            The source code can be downloaded here: <a download
+                href='files/file_editor.zip' target='_blank'>file_editor.zip</a>
+        </p>
+
+        <div class='highlight'><pre><code>file_name = <span class='y'>input</span>(<span class='o'>'Enter the name of the file: '</span>)
+        
+<span class='y'>print</span>(<span class='o'>'Choose mode to open file:'</span>)
+        
+<span class='p'>while</span> <span class='b'>True</span>:
+    mode = <span class='y'>input</span>(<span class='o'>'Read (r); OverWrite (w); Append (a); Write New (x) '</span>)
+    <span class='p'>if</span> mode <span class='b'>in</span> (<span class='o'>'r'</span>, <span class='o'>'w'</span>, <span class='o'>'x'</span>):
+        <span class='p'>break</span>
+    <span class='p'>elif</span> mode == <span class='o'>'a'</span>:
+        mode = <span class='o'>'r+'</span>
+        <span class='p'>break</span>
+    <span class='p'>else</span>:
+        <span class='y'>print</span>(<span class='o'>'Invalid'</span>)
+
+<span class='p'>try</span>:
+    <span class='p'>with</span> <span class='y'>open</span>(file_name, mode) <span class='p'>as</span> <span class='lb'>file</span>:
+        <span class='p'>if</span> mode != <span class='o'>'r'</span>:
+            <span class='y'>print</span>(<span class='o'>'Enter message: '</span>, <span class='lb'>end</span>=<span class='o'>''</span>)
+
+        <span class='p'>if</span> mode == 'r':
+            <span class='y'>print</span>(file.read())
+
+        <span class='p'>elif</span> mode == <span class='o'>'r+'</span>:
+            file_contents = <span class='lb'>file</span>.read()
+            message = <span class='y'>input</span>(<span class='o'>'\n'</span> + file_contents)
+            <span class='lb'>file</span>.write(message)
+            <span class='y'>print</span>(file_contents + message)
+
+        <span class='p'>elif</span> mode <span class='b'>in</span> (<span class='o'>'w'</span>, <span class='o'>'x'</span>):
+            message = <span class='y'>input</span>()
+            <span class='lb'>file</span>.write(message)
+            <span class='y'>print</span>(message)
+
+<span class='p'>except</span> <span class='dg'>FileExistsError</span>:
+    <span class='y'>print</span>(<span class='o'>'File already exists'</span>)
+
+<span class='p'>except</span> <span class='dg'>FileNotFoundError</span>:
+    <span class='y'>print</span>(<span class='o'>'File could not be found'</span>)</code></pre></div>
+
+        <div class='background'></div>
+
+    </div>
+</body>
+
+</html>
