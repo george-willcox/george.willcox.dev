@@ -3,6 +3,7 @@
     <link rel = 'stylesheet' href = '../../styles/style.css'>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src=..\..\scripts\syntax_highlighter.js></script>
     <title>Pi Generator</title>
   </head>
   <body>
@@ -85,7 +86,7 @@ value = 0</code></pre></div>
         What also needs to be kept in mind is how the terms alternate adding and subtracting, so on each iteration of the loop we will add the next two terms.
       </p>
 
-      <div class='highlight'><pre><code><span class='o'>while True</span>:
+      <div class='highlight'><pre><code>while True:
     value += 1 / (2 * n + 1)
     n += 1
     value -= 1 / (2 * n + 1)
@@ -104,7 +105,7 @@ value = 0</code></pre></div>
         This means that when printing the result to the screen, we will have to multiply the value variable by 4.
       </p>
 
-    <div class='highlight'><pre><code><span class='p'>print</span>(4 * value)</code></pre></div>
+    <div class='highlight'><pre><code>print(4 * value)</code></pre></div>
 
       <p>
         And there we have it, a program that can calculate \(\pi\) al the way up to 15 decimal places.
@@ -119,13 +120,13 @@ value = 0</code></pre></div>
       <div class='highlight'><pre><code>n = 0
 value = 0
 
-<span class='o'>while True</span>:
+while True:
     value += 1 / (2 * n + 1)
     n += 1
     value -= 1 / (2 * n + 1)
     n += 1
 
-    <span class='p'>print</span>(4 * value)</code></pre></div>
+    print(4 * value)</code></pre></div>
 
 
       <h2><a name = 'Arcsine Series' id = 'Arcsine Function'></a>Arcsine Series:</h2>

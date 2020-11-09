@@ -1,68 +1,71 @@
 <html>
+    <head>
+        <link rel='stylesheet' href='../../styles/style.css'>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script async src=..\..\scripts\syntax_highlighter.js></script>
+        <title>Prime Number</title>
+    </head>
+    <body>
 
-<head>
-    <link rel='stylesheet' href='../../styles/style.css'>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <title>Prime Number</title>
-</head>
+        <div class='Header'>
+            <h1>Prime Number</h1>
+        </div>
 
-<body>
+        <div class='Navigation'>
+            <ul style='list-style-type: none'>
+                <li><a href='../../index.html'>Home</a></li>
+                <li><a class='active' href='../projects.html'>Projects</a></li>
+                <li style='float:right'><a href='../../contact/contact.html'>Contact</a></li>
+            </ul>
+        </div>
 
-    <div class='Header'>
-        <h1>Prime Number</h1>
-    </div>
+        <div class='Main'>
+            <h2>Contents:</h2>
 
-    <div class='Navigation'>
-        <ul style='list-style-type: none'>
-            <li><a href='../../index.html'>Home</a></li>
-            <li><a class='active' href='../projects.html'>Projects</a></li>
-            <li style='float:right'><a href='../../contact/contact.html'>Contact</a></li>
-        </ul>
-    </div>
+            <ul>
+                <li><a href='#introduction'>Introduction</a></li>
+                <li><a href='#code'>Code</a></li>
+            </ul>
 
-    <div class='Main'>
-        <h2>Contents:</h2>
+            <h2><a name='introduction' id='introduction'></a>Introduction:</h2>
+            <h2><a name='code' id='code'></a>Code:</h2>
 
-        <ul>
-            <li><a href='#introduction'>Introduction</a></li>
-            <li><a href='#code'>Code</a></li>
-        </ul>
+            <p>
+                The source code can be downloaded here: <a download href='files/prime_number.zip' target='_blank'>prime_number.zip</a>
+            </p>
 
-        <h2><a name='introduction' id='introduction'></a>Introduction:</h2>
-        <h2><a name='code' id='code'></a>Code:</h2>
+            <div class='highlight'><pre><code># 10/04/17
+# George Willcox
+# Version: 3.7
+# File Editor
 
-        <p>
-            The source code can be downloaded here: <a download href='files/prime_number.zip' target='_blank'>prime_number.zip</a>
-        </p>
+import math
 
-        <div class='highlight'><pre><code><span class='p'>import</span> math
-        
-num = <span class='dg'>int</span>(<span class='y'>input</span>(<span class='o'>"Enter a number: "</span>))
+num = int(input("Enter a number: "))
 
-<span class='g'>#Prime numbers are greater than 1</span>
-<span class='p'>if</span> num > <span class='lg'>1</span>:
+#Prime numbers are greater than 1
+if num > 1:
 
-    <span class='g'>#Check for factors from 2 to sqrt num</span>
-    <span class='p'>for</span> i <span class='p'>in</span> <span class='y'>range</span>(2, math.ceil(math.sqrt(num))):
+    #Check for factors from 2 to sqrt num
+    for i in range(2, math.ceil(math.sqrt(num))):
 
-        <span class='g'>#If num is divisible by i it is not prime</span>
-        <span class='p'>if</span> num % i == <span class='lg'>0</span>:
-            <span class='y'>print</span>(num, <span class='o'>'is not a prime number'</span>)
-            <span class='y'>print</span>(i, <span class='o'>'times'</span>, <span class='dg'>int</span>(num / i), <span class='o'>'is'</span>, num)
-            <span class='p'>break</span>
+        #If num is divisible by i it is not prime
+        if num % i == 0:
+            print(num, 'is not a prime number')
+            print(i, 'times', int(num / i), 'is', num)
+            break
 
-    <span class='p'>else</span>:
-    <span class='y'>print</span>(num, <span class='o'>'is a prime number'</span>)
+    else:
+        print(num, 'is a prime number')
 
-<span class='g'>#If input number is less than or equal to 1, it is not prime</span>
-<span class='p'>else:</span>
-    <span class='y'>print</span>(num, <span class='o'>'is not a prime number'</span>)
-        </code></pre></div>
+#If input number is less than or equal to 1, it is not prime
+else:
+    print(num, 'is not a prime number')
+            </code></pre></div>
 
-        <div class='background'></div>
+            <div class='background'></div>
 
-    </div>
-</body>
-
+        </div>
+    </body>
 </html>
