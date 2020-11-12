@@ -1,6 +1,53 @@
-var elements = document.getElementsByClassName('highlight'), elmnt, i;
+<html>
+  <head>
+    <link rel='stylesheet' href='../../styles/style.css'>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src=..\..\scripts\syntax_highlighter.js></script>
+    <title>Syntax Highlighter</title>
+  </head>
+  <body>
 
-for (elmmt = 0; elmmt < elements.length; elmmt++) {
+    <div class='Header'>
+      <h1>syntax_highlighter</h1>
+    </div>
+
+    <div class='Navigation'>
+      <ul style='list-style-type: none'>
+        <li><a href='../../index.html'>Home</a></li>
+        <li><a class='active' href='../projects.html'>Projects</a></li>
+        <li style='float:right'><a href='../../contact/contact.html'>Contact</a></li>
+      </ul>
+    </div>
+
+    <div class='Main'>
+      <h2>Contents:</h2>
+
+      <ul>
+        <li><a href='#introduction'>Introduction</a></li>
+        <li><a href='#code'>Code</a></li>
+      </ul>
+
+      <h2><a name='introduction' id='introduction'></a>Introduction:</h2>
+
+      <p>
+        This is the script I wrote to get automatic syntax highlighting to work on this website.
+        I only have it set up to work with Python and Javascript at the moment, but it is easy to add more languages.
+        It works by searching for the closest item out of the set it is looking for and colouring that, then moving to the end of that item and searching again.
+        The next thing I want to add to it, is the automatic detection of functions and classes.
+        This is as currently you have to specify these in the div holding the code for the colours to work.
+        However, despite this it makes it very easy to have syntax highlighting for blocks of code.
+      </p>
+
+      <h2><a name='code' id='code'></a>Code:</h2>
+
+      <p>
+        The source code can be downloaded here: <a download href='files/syntax_highlighter.zip' target='_blank'>syntax_highlighter.zip</a>
+      </p>
+
+      <div class="highlight" data-language="js" data-functions="syntax_highlighter,pythonMode,jsMode,getPos,getNumPos,getWordPos,getMinPos,colourText,getAttribute,toLowerCase,getElementsByClassName,substr,push,split,max,substring,replace,concat,indexOf,match,search"><pre><code>var elements = document.getElementsByClassName('highlight'), elmnt, i;
+
+for (elmmt = 0; elmmt &lt; elements.length; elmmt++) {
     syntax_highlighter(elements[elmmt]);
 }
 
@@ -16,7 +63,7 @@ function syntax_highlighter(element, _, _) {
 
     function pythonMode(element) {
         var rest = element.innerHTML, done = "", esc = [], i, cc, tt = "", sqstr_pos, dqstr_pos, com_pos, keyword_pos, keyword_pos2, num_pos, func_pos, class_pos, mypos, func_words, class_words;
-        for (i = 0; i < rest.length; i++) {
+        for (i = 0; i &lt; rest.length; i++) {
             cc = rest.substr(i, 1);
             if (cc == "\\") {
                 esc.push(rest.substr(i, 2));
@@ -55,14 +102,14 @@ function syntax_highlighter(element, _, _) {
             }
         }
         rest = done + rest;
-        for (i = 0; i < esc.length; i++) {
+        for (i = 0; i &lt; esc.length; i++) {
             rest = rest.replace("ESCAPE", esc[i]);
         }
         return colourText(rest, python_colours['text']);
     }
     function jsMode(element) {
         var rest = element.innerHTML, done = "", esc = [], i, cc, tt = "", sqstr_pos, dqstr_pos, com_pos, keyword_pos, keyword_pos2, num_pos, sym_pos, func_pos, mypos, func_words;
-        for (i = 0; i < rest.length; i++) {
+        for (i = 0; i &lt; rest.length; i++) {
             cc = rest.substr(i, 1);
             if (cc == "\\") {
                 esc.push(rest.substr(i, 2));
@@ -96,20 +143,20 @@ function syntax_highlighter(element, _, _) {
             }
         }
         rest = done + rest;
-        for (i = 0; i < esc.length; i++) {
+        for (i = 0; i &lt; esc.length; i++) {
             rest = rest.replace("ESCAPE", esc[i]);
         }
         return colourText(rest, js_colours['text']);
     }
     function colourText(text, colour) {
         if (colour == null) { return text; }
-        else { return '<span style=color:' + colour + '>' + text + '</span>'; }
+        else { return '&lt;span style=color:' + colour + '>' + text + '&lt;/span>'; }
     }
     function getMinPos() {
         var i, arr = [];
-        for (i = 0; i < arguments.length; i++) {
+        for (i = 0; i &lt; arguments.length; i++) {
             if (arguments[i][0] > -1) {
-                if (arr.length == 0 || arguments[i][0] < arr[0]) { arr = arguments[i]; }
+                if (arr.length == 0 || arguments[i][0] &lt; arr[0]) { arr = arguments[i]; }
             }
         }
         if (arr.length == 0) { arr = arguments[i]; }
@@ -156,12 +203,12 @@ function syntax_highlighter(element, _, _) {
             }
         }
         words = words.concat(custom_words);
-        for (i = 0; i < words.length; i++) {
+        for (i = 0; i &lt; words.length; i++) {
             pos = text.indexOf(words[i]);
             if (pos > -1) {
                 patt = /\W/g;
                 if (text.substr(pos + words[i].length, 1).match(patt) && text.substr(pos - 1, 1).match(patt)) {
-                    if (pos > -1 && (rpos == -1 || pos < rpos)) {
+                    if (pos > -1 && (rpos == -1 || pos &lt; rpos)) {
                         rpos = pos;
                         rpos2 = rpos + words[i].length;
                     }
@@ -178,16 +225,16 @@ function syntax_highlighter(element, _, _) {
         return [s, e + (end.length), colour];
     }
     function getNumPos(text, colour) {
-        var arr = [" ", ";", "(", "+", ")", "[", "]", ",", "&", ":", "{", "}", "/", "-", "*", "|", "%", "=", "\n", "\r", "<", ">"], i, j, c, startpos = 0, endpos, word;
-        for (i = 0; i < text.length; i++) {
-            for (j = 0; j < arr.length; j++) {
+        var arr = [" ", ";", "(", "+", ")", "[", "]", ",", "&", ":", "{", "}", "/", "-", "*", "|", "%", "=", "\n", "\r", "&lt;", ">"], i, j, c, startpos = 0, endpos, word;
+        for (i = 0; i &lt; text.length; i++) {
+            for (j = 0; j &lt; arr.length; j++) {
                 c = text.substr(i, arr[j].length);
                 if (c == arr[j]) {
                     if (c == "-" && (text.substr(i - 1, 1) == "e" || text.substr(i - 1, 1) == "E")) {
                         continue;
                     }
                     endpos = i;
-                    if (startpos < endpos) {
+                    if (startpos &lt; endpos) {
                         word = text.substring(startpos, endpos);
                         if (!isNaN(word)) { return [startpos, endpos, colour]; }
                     }
@@ -201,12 +248,12 @@ function syntax_highlighter(element, _, _) {
         return [-1, -1, colour];
     }
     function getSymPos(text, colour) {
-        var symbols = ['!', '%', '&', '*', '(', ')', '[', ']', '{', '}', ',', '.', '<', '>', '-', '+', '=', '/', ';', ':', '|'], i, j
-        for (i = 0; i < text.length; i++) {
+        var symbols = ['!', '%', '&', '*', '(', ')', '[', ']', '{', '}', ',', '.', '&lt;', '>', '-', '+', '=', '/', ';', ':', '|'], i, j
+        for (i = 0; i &lt; text.length; i++) {
             c = text[i];
             if (symbols.indexOf(c) >= 0) {
-                if (c == '<') {
-                    for (j = 1; j + i < text.length; j++) {
+                if (c == '&lt;') {
+                    for (j = 1; j + i &lt; text.length; j++) {
                         c = text[i + j]
                         if (c == '>') { return [i, i+j+1, null]; }
                         else if (!c.match(/[a-z]|\//i)) { break; }
@@ -217,4 +264,10 @@ function syntax_highlighter(element, _, _) {
         }
         return [-1, -1, colour];
     }
-}
+}</code></pre></div>
+
+      <div class='background'></div>
+
+    </div>
+  </body>
+</html>
