@@ -34,9 +34,16 @@
         This is the script I wrote to get automatic syntax highlighting to work on this website.
         I only have it set up to work with Python and Javascript at the moment, but it is easy to add more languages.
         It works by searching for the closest item out of the set it is looking for and colouring that, then moving to the end of that item and searching again.
+      </p>
+
+      <p>
         The next thing I want to add to it, is the automatic detection of functions and classes.
         This is as currently you have to specify these in the div holding the code for the colours to work.
         However, despite this it makes it very easy to have syntax highlighting for blocks of code.
+      </p>
+
+      <p>
+          There is also an issue with less than (&lt;) and greater than signs (&gt;) sometimes being rendered as &<span>lt</span>; and &<span>gt</span>; instead.
       </p>
 
       <h2><a name='code' id='code'></a>Code:</h2>
@@ -47,7 +54,7 @@
 
       <div class="highlight" data-language="js" data-functions="syntax_highlighter,pythonMode,jsMode,getPos,getNumPos,getWordPos,getMinPos,colourText,getAttribute,toLowerCase,getElementsByClassName,substr,push,split,max,substring,replace,concat,indexOf,match,search"><pre><code>var elements = document.getElementsByClassName('highlight'), elmnt, i;
 
-for (elmmt = 0; elmmt &lt; elements.length; elmmt++) {
+for (elmmt = 0; elmmt < elements.length; elmmt++) {
     syntax_highlighter(elements[elmmt]);
 }
 
@@ -102,7 +109,7 @@ function syntax_highlighter(element, _, _) {
             }
         }
         rest = done + rest;
-        for (i = 0; i &lt; esc.length; i++) {
+        for (i = 0; i < esc.length; i++) {
             rest = rest.replace("ESCAPE", esc[i]);
         }
         return colourText(rest, python_colours['text']);
