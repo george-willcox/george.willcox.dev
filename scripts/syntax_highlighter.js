@@ -99,6 +99,10 @@ function syntax_highlighter(element, _, _) {
         for (i = 0; i < esc.length; i++) {
             rest = rest.replace("ESCAPE", esc[i]);
         }
+        
+        rest = rest.replace('&</span>gt<span style=color:#d4d4d4>;', '>');
+        rest = rest.replace('&</span>lt<span style=color:#d4d4d4>;', '<');
+
         return colourText(rest, js_colours['text']);
     }
     function colourText(text, colour) {

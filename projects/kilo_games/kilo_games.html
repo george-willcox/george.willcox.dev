@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="icon" href="../../images/favicon.png">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src=../../scripts/syntax_highlighter.js></script>
+    <title>George Willcox</title>
+</head>
+
+<body>
+    <div class="navigation">
+        <img class="logo shadow" src="../../images/G Logo.png" />
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../../interests/interests.html">Interests</a></li>
+            <li><a href="../../cv/cv.html">CV</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                Kilo Games
+            </div>
+        </div>
+        <div class="main">
+            <p>
+                This was the group project I worked on in Part IB of my degree.
+                We were tasked with creating an online platform to host games that would allow users to connect with bots.
+                The idea being that it was aimed at people learning to code and it would give them an opportunity to create algorithms for the games we hosted.
+            </p>
+
+            <p>
+                You can use the website at: <a href="https://kilo-games.netlify.app">kilo-games.netlify.app</a>
+            </p>
+
+            <p>
+                I worked on the frontend alongside one other group member, while the other 4 members created the backend.
+                We did this using React.js, which was my first time using the framework.
+            </p>
+
+            <p>
+                I was responsible for implementing the server api requests to get the game state, and the to render that on the screen.
+                For connect 4, which was the first game we implemented, the approach I decided on for creating the visualisation
+                was to generate the grid as an SVG and have the playing pieces as HTML elements. This made it
+                relatively simple to position the elements, as I could set the position absolutely and use the same
+                coordinates from the generation of the grid to make sure everything lined up correctly.
+                I then used css animations to show the game pieces falling into place.
+            </p>
+            <p>
+                Then for snake, which was the second game we added, a canvas seemed to be the best choice for how to render the game state,
+                as the objects are more complex than in connect 4. This is done just by drawing a rectangle for each body element of each of the snakes,
+                and drawing circles to represent the eyes on their heads.
+            </p>
+
+            <div style="margin-bottom: 7%;">
+                <img class="shadow" src="images/chrome_J2bYxB626X.png" width=49%>
+                <img class="shadow" src="images/chrome_5PSDhHqJ24.png" width=49% style="float: right">
+            </div>
+
+            <p>
+                Here is a code snippet of the function which drew the eyes on the snakes:
+            </p>
+
+            <div class="highlight" data-language="js" data-functions="drawEyes,drawEye,getScaleX,getScaleY,beginPath,arc,fill,stroke"><pre>drawEyes(position, horizontal=true) {
+    const drawEye = (x, y) => {
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, 9, 0, 2 * Math.PI, false);
+        this.ctx.fillStyle = 'black';
+        this.ctx.fill();
+        this.ctx.lineWidth = 4;
+        this.ctx.strokeStyle = 'white';
+        this.ctx.stroke();
+    }
+ 
+    if (horizontal) {
+        drawEye(
+            (position.x + 0.5) * this.getScaleX(),
+            (position.y + 0.25) * this.getScaleY()
+        );
+        drawEye(
+            (position.x + 0.5) * this.getScaleX(),
+            (position.y + 0.75) * this.getScaleY()
+        );
+    } else {
+        drawEye(
+            (position.x + 0.25) * this.getScaleX(),
+            (position.y + 0.5) * this.getScaleY()
+        );
+        drawEye(
+            (position.x + 0.75) * this.getScaleX(),
+            (position.y + 0.5) * this.getScaleY()
+        );
+    }
+}</pre></div>
+
+        </div>
+        <div class="background"></div>
+    </div>
+</body>
+
+</html>
