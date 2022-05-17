@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../styles/style.css">
     <link rel="icon" href="../../images/favicon.png">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async src=../../scripts/syntax_highlighter.js></script>
     <title>George Willcox</title>
 </head>
@@ -76,7 +74,7 @@
                 returns whether that puzzle is within the provided restraints.
             </p>
 
-            <div class="highlight" data-functions="append,items,replace,values,puzzle_within_restraints"><pre><code>def puzzle_within_restraints(guesses, target, max_green, max_yellow):
+            <div class="highlight" data-functions="append,items,replace,values,puzzle_within_restraints"><pre>def puzzle_within_restraints(guesses, target, max_green, max_yellow):
     green = "-" * len(target)
     yellow = {letter: [0] * len(guesses) for letter in target}
     grey = []
@@ -103,7 +101,7 @@
 
     yellow = {letter: max(number) for letter, number in yellow.items()}
 
-    return len(green.replace("-", "")) <= max_green and sum(yellow.values()) + len(green.replace("-", "")) <= max_yellow + max_green</code></pre></div>
+    return len(green.replace("-", "")) <= max_green and sum(yellow.values()) + len(green.replace("-", "")) <= max_yellow + max_green</pre></div>
 
             <h2><a name="words" id="words"></a>Word List:</h2>
             

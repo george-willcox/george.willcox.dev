@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../styles/style.css">
     <link rel="icon" href="../../images/favicon.png">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async src=../../scripts/syntax_highlighter.js></script>
     <title>George Willcox</title>
 </head>
@@ -72,7 +70,7 @@
                 As an example, here is a snippet of code from that very class which kills the player.
             </p>
 
-            <div class="highlight"><pre><code># Kill the player when they have no lives or fall out of the world
+            <div class="highlight"><pre># Kill the player when they have no lives or fall out of the world
 if self.player.lives <= 0 or self.player.rect.top > self.world_size[1]:
     # Stop all music and sounds
     pygame.mixer.music.stop()
@@ -83,7 +81,7 @@ if self.player.lives <= 0 or self.player.rect.top > self.world_size[1]:
     self.sounds['death'].play()
     self.dead = True  # Set dead flag
     # Causes the player to jump up in the air when dead
-    self.player.velocity.y = -self.player.jump_force</code></pre></div>
+    self.player.velocity.y = -self.player.jump_force</pre></div>
 
             <h2><a name="screenshots" id="screenshots"></a>Screenshots:</h2>
 

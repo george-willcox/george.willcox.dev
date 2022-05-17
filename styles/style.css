@@ -140,6 +140,19 @@ a:not(.non-text-link):active {
     overflow-y: hidden;
 }
 
+.inline {
+    font-family: Consolas, monospace;
+    font-size: 0.9rem !important;
+    margin-top: 4px;
+    padding: 8px 15px;
+    background: #333333;
+    border-radius: 3px;
+    border: 1px solid #c7c7c7;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 225%;
+    white-space: nowrap;
+}
+
 .math {
     overflow: auto;
 }

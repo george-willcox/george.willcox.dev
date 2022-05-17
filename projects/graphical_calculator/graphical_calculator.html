@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="icon" href="../../images/favicon.png">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src=../../scripts/syntax_highlighter.js></script>
+    <title>George Willcox</title>
+</head>
+
+<body>
+    <div class="navigation">
+        <img class="logo shadow" src="../../images/G Logo.png" />
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../../interests/interests.html">Interests</a></li>
+            <li><a href="../../cv/cv.html">CV</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                Graphical Calculator
+            </div>
+        </div>
+        <div class="main">
+            
+            <p>
+                This is a utility that can plot equations of the form \(y=f(x)\), and perform a few basic operations on them.
+            </p>
+
+            <p>
+                First the input is converted into a form executable by python using some regex substitutions.
+                It will then be evaluated for each point on the screen horizontally.
+                For example, \(y=2x(\sin(x))\) will be converted into <code class="highlight inline">2*x*(math.sin(x))</code>
+            </p>
+
+            <p>
+                Then once the function has been evaluated for all points, those which have a value within the view will be connected with lines to render the curve.
+                This approach isn't perfect, and means that non-continuous curves like \(y=\text{floor}(x)\) will have their sections connected.
+                There are also sometimes jagged edges on curved sections, just from how the inbuilt line tool works. For most functions though, it looks quite good.
+            </p>
+            
+            <img class="shadow" src="images/python_8wEiE4PlR2.png" width=100%>
+            
+            <p>
+                The view can be dragged around and zoomed out to show different parts of the graph,
+                and doing so will scale the background grid and change the axis labels accordingly.
+                The view also zooms into where the cursor is, which helps to make the application easy to control.
+            </p>
+            
+            <img class="shadow" src="images/python_tg0Krq4UZp.gif" width=100%>
+
+            <p>
+                There are then also a few utilities in the menu on the left, which allow you to find the intercepts of the graph,
+                the value at a specific point, and even to get the area under it for a given range.
+            </p>
+
+            <p>
+                The intercept functions are quite simple, just finding the point at which the graph crosses the axis.
+                For the y-axis, there will only ever be one intercept due to the restriction on the type of function allowed,
+                and for the x-axis it will tell you the roots only visible on the screen.
+                Trace will just evaluate the function at the point given, and then integrate uses Simpson's method to approximate the area between the two given points.
+            </p>
+
+            <p>
+                Here is a code snippet of the function which does the integration.
+            </p>
+
+            <div class="highlight" data-functions="integrate,func"><pre>def integrate(func, a, b, n=10):
+    """Find an approximation for the definite integral between a and b
+    Using Simpson's rule with n equally spaced strips"""
+
+    if n % 2 == 1:  # Simpson's Rule requires an even number of strips
+        n += 1
+
+    dx = (b - a) / n  # Width of each strip
+    area = 0
+
+    # Calculates the y value at each interval between strips and applies Simpson's Rule
+    for i, y in enumerate([func(a + i * dx) for i in range(n + 1)]):
+        if i in (0, n):
+            area += y
+        elif i % 2 == 1:
+            area += 4 * y
+        else:
+            area += 2 * y
+
+    return area * (dx / 3)</pre></div>
+            
+
+        </div>
+        <div class="background"></div>
+    </div>
+</body>
+
+</html>
