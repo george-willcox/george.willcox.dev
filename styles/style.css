@@ -24,7 +24,7 @@ body {
 }
 
 .navigation {
-    position: absolute;
+    position: fixed;
     right: 8%;
     top: 75px;
     width: 250px;
