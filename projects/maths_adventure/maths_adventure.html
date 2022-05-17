@@ -1,70 +1,76 @@
 <html>
-  <head>
-    <link rel='stylesheet' href='../../styles/style.css'>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="icon" href="../../images/favicon.png">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async src=..\..\scripts\syntax_highlighter.js></script>
-    <title>Maths Adventure</title>
-  </head>
-  <body>
+    <script async src=../../scripts/syntax_highlighter.js></script>
+    <title>George Willcox</title>
+</head>
 
-    <div class='Header'>
-      <h1>Maths Adventure</h1>
+<body>
+    <div class="navigation">
+        <img class="logo" src="../../images/G Logo.png" />
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
     </div>
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                Maths Adventure
+            </div>
+        </div>
+        <div class="main">
+            <h2>Contents:</h2>
 
-    <div class='Navigation'>
-      <ul style='list-style-type: none'>
-        <li><a href='../../index.html'>Home</a></li>
-        <li><a class='active' href='../projects.html'>Projects</a></li>
-        <li style='float:right'><a href='../../contact/contact.html'>Contact</a></li>
-      </ul>
-    </div>
+            <ul>
+                <li><a href='#introduction'>Introduction</a></li>
+                <li><a href='#assets'>Assets</a></li>
+                <li><a href='#code'>About the Code</a></li>
+                <li><a href='#screenshots'>Screenshots</a></li>
+            </ul>
 
-    <div class='Main'>
-      <h2>Contents:</h2>
+            <h2><a name='introduction' id='introduction'></a>Introduction:</h2>
 
-      <ul>
-        <li><a href='#introduction'>Introduction</a></li>
-        <li><a href='#assets'>Assets</a></li>
-        <li><a href='#code'>About the Code</a></li>
-        <li><a href='#screenshots'>Screenshots</a></li>
-      </ul>
+            <p>
+                This is a platformer with a maths theme for young children.
+                The levels have a basic layout, and have a simple arithmetic question at the end.
+                It is a project that I was commissioned to make.
+            </p>
 
-      <h2><a name='introduction' id='introduction'></a>Introduction:</h2>
+            <h2><a name='assets' id='assets'></a>Assets:</h2>
 
-      <p>
-        This is a platformer with a maths theme for young children.
-        The levels have a basic layout, and have a simple arithmetic question at the end.
-      </p>
+            <p>
+                The game mostly just uses sprites and sounds from Super Mario Brothers. These were just what was provided by my client.
+                The source code and all the used assets can be <a download href='files/maths_adventure.zip' target='_blank'>downloaded here</a>.
+                This includes the images, sounds, level data, and the font used.
+            </p>
 
-      <h2><a name='assets' id='assets'></a>Assets:</h2>
+            <h2><a name='code' id='code'></a>About the Code:</h2>
 
-      <p>
-        The game mostly just uses sprites and sounds from Super Mario Brothers.
-        The source code and all the used assets can be <a download href='files/maths_adventure.zip' target='_blank'>downloaded here</a>.
-        This includes the images, sounds, level data, and the font used.
-      </p>
+            <p>
+                This is a large project spanning many files and thousands of lines of code, so I'll not include it all here.
+                You can view it in the download link if you are interested.
+            </p>
 
-      <h2><a name='code' id='code'></a>About the Code:</h2>
+            <p>
+                Most of the work is done in the <code>update</code> method of <code>GameScene</code> in scenes.py.
+                This makes all the necessary method calls to other classes and essentially does all that is needed for the game to run.
+                It also does things like check if the player has run out of lives,
+                advance the level if the player has reached the end,
+                and update the HUD to display the score, lives, and coins collected.
+            </p>
 
-      <p>
-        This is a large project spanning many files and thousands of lines of code, so I'll not include it all here.
-        You can view it in the download link if you are interested.
-      </p>
+            <p>
+                As an example, here is a snippet of code from that very class which kills the player.
+            </p>
 
-      <p>
-        Most of the work is done in the <code>update</code> method of <code>GameScene</code> in scenes.py.
-        This makes all the necessary method calls to other classes and essentially does all that is needed for the game to run.
-        It also does things like check if the player has run out of lives, and kills them if they have;
-        advance the level if the player has reached the end;
-        and update the HUD to display the score, lives, and coins collected.
-      </p>
-
-      <p>
-        As an example, here is a snippet of code from that very class which kills the player.
-      </p>
-
-      <div class='highlight'><pre><code># Kill the player when they have no lives or fall out of the world
+            <div class='highlight'><pre><code># Kill the player when they have no lives or fall out of the world
 if self.player.lives <= 0 or self.player.rect.top > self.world_size[1]:
     # Stop all music and sounds
     pygame.mixer.music.stop()
@@ -77,24 +83,19 @@ if self.player.lives <= 0 or self.player.rect.top > self.world_size[1]:
     # Causes the player to jump up in the air when dead
     self.player.velocity.y = -self.player.jump_force</code></pre></div>
 
-      <p>
-        The text class seen <a href='../text_class/text_class.html'>here</a> is used in this project to handle the HUD and the menu text.
-      </p>
+            <h2><a name='screenshots' id='screenshots'></a>Screenshots:</h2>
 
-      <h2><a name='screenshots' id='screenshots'></a>Screenshots:</h2>
+            <p>
+                Here are a few screenshots taken from inside the game.
+            </p>
 
-      <p>
-        Here are a few screenshots taken from inside the game.
-      </p>
-
-      <img src='images/menu.png' width=49%>
-      <img src='images/lvl_1.png' width=49% style='float: right'>
-      <img src='images/lvl_2.png' width=49% style='margin-top: 2%'>
-      <img src='images/lvl_3.png' width=49% style='margin-top: 2%; float: right'>
-
-      <div style='margin-top: 30px'></div>
-      <div class='background'></div>
-
+            <img src='images/menu.png' width=49%>
+            <img src='images/lvl_1.png' width=49% style='float: right'>
+            <img src='images/lvl_2.png' width=49% style='margin-top: 2%'>
+            <img src='images/lvl_3.png' width=49% style='margin-top: 2%; float: right'>
+        </div>
+        <div class="background"></div>
     </div>
-  </body>
+</body>
+
 </html>

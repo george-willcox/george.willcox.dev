@@ -1,146 +1,120 @@
 <html>
-  <head>
-    <link rel = 'stylesheet' href = '../../styles/style.css'>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="icon" href="../../images/favicon.png">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async src=..\..\scripts\syntax_highlighter.js></script>
-    <title>Pi Generator</title>
-  </head>
-  <body>
+    <script async src=../../scripts/syntax_highlighter.js></script>
+    <title>George Willcox</title>
+</head>
 
-    <div class = 'Header'>
-      <h1>Pi Generator</h1>
+<body>
+    <div class="navigation">
+        <img class="logo" src="../../images/G Logo.png" />
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
     </div>
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                Pi Generator
+            </div>
+        </div>
+        <div class="main">
+            
+            <p>
+                This page exists primarily to demonstrate \(\LaTeX\) integration, but is still an interesting way to think about
+                \(\pi\).
+            </p>
+            
+            <h2><a name="Introduction" id="Introduction"></a>Introduction:</h2>
+            
+            <p>
+                There are many ways available to calculate \(\pi\), but a common way is by use of an infinite sum.
+                This involves adding a set of numbers together that all follow a set pattern, and then sometimes multiplying or
+                dividing the result by another number to get \(\pi\).
+                Here, there are two different methods of calculating \(\pi\) shown.
+            </p>
+            
+            <p>
+                The first of the two methods shown, is the simple but inefficient infinite sum that was used by James Gregory and
+                Gottfried Leibniz, which is a series expansion of the arctangent function.
+                By using the fact that \(\text{arctan}(1) = \frac{\pi}{4}\) they found the series:
+            </p>
+            
+            <p class="math">
+                \[
+                \pi = 4\left ( \frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots \right )
+                \]
+            </p class="math">
+            
+            <p>
+                Then the second of these sequences is a similar infinite sum that was proposed by Sir Isaac Newton.
+                He expanded the arcsine function, and used the fact that \(\text{arcsin}(1/2) = \frac{\pi}{6}\) to obtain the
+                series:
+            </p>
+            
+            <p class="math">
+                \[
+                \pi = 6 \left (\frac{1}{2^1 \cdot 1} + \left ( \frac{1}{2} \right ) \frac{1}{2^3 \cdot 3} + \left ( \frac{1 \cdot
+                3}{2 \cdot 4} \right ) \frac{1}{2^5 \cdot 5} + \left ( \frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6} \right )
+                \frac{1}{2^7 \cdot 7} + \cdots \right )
+                \]
+            </p>
+            
+            <p>
+                This arcsine series converges much faster than using the arctangent, only 22 terms are needed to obtain the first 16
+                decimal places of \(\pi\). Whereas by using the arctangent series, 30000 iterations are not enough to calculate the
+                5th decimal place.
+            </p>          
+            
+            <h2><a name="Arcsine Series" id="Arcsine Function"></a>Arcsine Series:</h2>
+            
+            <p>
+                Here is a function which uses the above arcsine series to calculate \(\pi\) to a given number of decimal places.
+            </p>
 
-    <div class = 'Navigation'>
-      <ul style = 'list-style-type: none'>
-        <li><a href = '../../index.html'>Home</a></li>
-        <li><a class = 'active' href = '../projects.html'>Projects</a></li>
-        <li style = 'float:right'><a href = '../../contact/contact.html'>Contact</a></li>
-      </ul>
+            <div class="highlight" data-classes="decimal,Decimal" data-functions="get_pi,getcontext"><pre><code>import decimal
+
+def get_pi(places):
+    """
+    Calculates pi to the number to decimal places given using an arcsine series
+    """
+    decimal.getcontext().prec = places
+
+    n = 0
+    last = 0
+
+    #Set the value of the first term
+    value = decimal.Decimal(1 / 2)
+
+    while True:
+        n += 1
+        top = 1
+        bottom = 2 ** (2 * n + 1) * (2 * n + 1) * 2
+        for i in range(n):
+            top *= 2 * i + 1
+            if i != 0: bottom *= 2 * i + 2
+            
+        value += decimal.Decimal(top) / decimal.Decimal(bottom)
+
+        #Test if the value is the same as the last value calculated
+        if value == last:
+            break
+        else:
+            last = value
+
+    return 6 * value
+</code></pre></div>
+
+        </div>
+        <div class="background"></div>
     </div>
+</body>
 
-    <div class = 'Main'>
-      <h2>Contents:</h2>
-
-      <ul>
-        <li><a href = '#Introduction'>Introduction</a></li>
-        <li><a href = '#Arctangent Series'>Arctangent Series</a></li>
-        <li><a href = '#Arcsine Series'>Arcsine Series</a></li>
-      </ul>
-
-      <p>
-        This page exists primarily to demonstrate \(\LaTeX\) integration, but is still an interesting way to think about \(\pi\).
-      </p>
-
-      <h2><a name = 'Introduction' id = 'Introduction'></a>Introduction:</h2>
-
-      <p>
-        There are many ways available to calculate \(\pi\), but a common way is by use of an infinite sum.
-        This involves adding a set of numbers together that all follow a set pattern, and then sometimes multiplying or dividing the result by another number to get \(\pi\).
-        Here, there are two different methods of calculating \(\pi\) shown.
-      </p>
-
-      <p>
-        The first of the two methods shown, is the simple but inefficient infinite sum that was used by James Gregory and Gottfried Leibniz, which is a series expansion of the arctangent function.
-        By using the fact that \(\text{arctan}(1) = \frac{\pi}{4}\) they found the series:
-      </p>
-
-      <p class='math'>
-        \[
-        \pi = 4\left ( \frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots \right )
-        \]
-      </p class='math'>
-
-      <p>
-        Then the second of these sequences is a similar infinite sum that was proposed by Sir Isaac Newton. 
-        He expanded the arcsine function, and used the fact that \(\text{arcsin}(1/2) = \frac{\pi}{6}\) to obtain the series:
-      </p>
-
-      <p class='math'>
-        \[
-        \pi = 6 \left (\frac{1}{2^1 \cdot 1} + \left ( \frac{1}{2} \right ) \frac{1}{2^3 \cdot 3} + \left ( \frac{1 \cdot 3}{2 \cdot 4} \right ) \frac{1}{2^5 \cdot 5} + \left ( \frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6} \right ) \frac{1}{2^7 \cdot 7} + \cdots \right )
-        \]
-      </p>
-
-      <p>
-        This arcsine series converges much faster than using the arctangent, only 22 terms are needed to obtain the first 16 decimal places of \(\pi\). Whereas by using the arctangent series, 30000 iterations are not enough to calculate the 5th decimal place.
-      </p>
-
-      <h2><a name = 'Arctangent Series' id = 'Arctangent Function'></a>Arctangent Series:</h2>
-
-      <p>
-        The source code for the arctangent series can be downloaded here: <a download href = 'files/Arctangent series.zip' target='_blank'>Arctangent series.zip</a>
-      </p>
-
-      <p>
-        Now, although this series is very inefficient, it is very simple, and so the code is very simple too. This makes it a perfect introduction for working with infinite sums and sequences.
-      </p>
-
-      <p>
-        To start with we will create two variables, one to store the value of \(\pi\) that we calculate, and one to store the iteration that we are currently on.
-      </p>
-
-      <div class='highlight'><pre><code>n = 0
-value = 0</code></pre></div>
-
-      <p>
-        The next thing to do after this, is to create a while loop that calculates each term in the sequence.
-        As the numerator of every term is always the same, that is quite easy to do. Also, the denominator increases as a linear sequence, which can be written as 2n + 1 (starting with n = 0)
-        What also needs to be kept in mind is how the terms alternate adding and subtracting, so on each iteration of the loop we will add the next two terms.
-      </p>
-
-      <div class='highlight'><pre><code>while True:
-    value += 1 / (2 * n + 1)
-    n += 1
-    value -= 1 / (2 * n + 1)
-    n += 1</code></pre></div>
-
-      <p>
-        You can see here that we have increased the variable n by 1 each time we have calculated a new term, and we simply add the terms together to calculate the value of \(\pi\).
-        This is what the value variable is used for.
-        When adding the terms, make sure to alternate adding and subtracting so that an accurate value for \(\pi\) is calculated.
-      <p>
-
-      <p>
-        Now that we have the code set up to calculate \(\pi\), we just need to print the result.
-        For ease I am going to print the result after every two terms, so that is once for every iteration of the loop.
-        When doing this, we must remember that \(\pi\) is equal to 4 times the sum of all of the terms in the sequence.
-        This means that when printing the result to the screen, we will have to multiply the value variable by 4.
-      </p>
-
-    <div class='highlight'><pre><code>print(4 * value)</code></pre></div>
-
-      <p>
-        And there we have it, a program that can calculate \(\pi\) al the way up to 15 decimal places.
-        It would be possible to increase the number of decimal places that we calculate \(\pi\) to, but this is unnecessary due to the inefficiency of the series.
-        Since it takes an incredible large number of iterations to calculate it to any substantial degree of accuracy, it is unlikely that the program will ever manage to reach 15 decimal places.
-      </p>
-
-      <p>
-        Here is the finished code in its entirety:
-      </p>
-
-      <div class='highlight'><pre><code>n = 0
-value = 0
-
-while True:
-    value += 1 / (2 * n + 1)
-    n += 1
-    value -= 1 / (2 * n + 1)
-    n += 1
-
-    print(4 * value)</code></pre></div>
-
-
-      <h2><a name = 'Arcsine Series' id = 'Arcsine Function'></a>Arcsine Series:</h2>
-
-      <p>
-        The source code for the arctangent series can be downloaded here: <a download href = 'files/Arcsine series.zip' target='_blank'>Arcsine series.zip</a>
-      </p>
-
-      <div class = 'background'></div>
-
-    </div>
-  </body>
 </html>
