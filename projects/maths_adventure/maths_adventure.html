@@ -12,7 +12,7 @@
 
 <body>
     <div class="navigation">
-        <img class="logo" src="../../images/G Logo.png" />
+        <img class="logo shadow" src="../../images/G Logo.png" />
         <ul>
             <li><a href="../../index.html">Home</a></li>
             <li><a href="../projects.html">Projects</a></li>
@@ -30,13 +30,13 @@
             <h2>Contents:</h2>
 
             <ul>
-                <li><a href='#introduction'>Introduction</a></li>
-                <li><a href='#assets'>Assets</a></li>
-                <li><a href='#code'>About the Code</a></li>
-                <li><a href='#screenshots'>Screenshots</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#assets">Assets</a></li>
+                <li><a href="#code">About the Code</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
             </ul>
 
-            <h2><a name='introduction' id='introduction'></a>Introduction:</h2>
+            <h2><a name="introduction" id="introduction"></a>Introduction:</h2>
 
             <p>
                 This is a platformer with a maths theme for young children.
@@ -44,15 +44,15 @@
                 It is a project that I was commissioned to make.
             </p>
 
-            <h2><a name='assets' id='assets'></a>Assets:</h2>
+            <h2><a name="assets" id="assets"></a>Assets:</h2>
 
             <p>
                 The game mostly just uses sprites and sounds from Super Mario Brothers. These were just what was provided by my client.
-                The source code and all the used assets can be <a download href='files/maths_adventure.zip' target='_blank'>downloaded here</a>.
+                The source code and all the used assets can be <a download href="files/maths_adventure.zip" target="_blank">downloaded here</a>.
                 This includes the images, sounds, level data, and the font used.
             </p>
 
-            <h2><a name='code' id='code'></a>About the Code:</h2>
+            <h2><a name="code" id="code"></a>About the Code:</h2>
 
             <p>
                 This is a large project spanning many files and thousands of lines of code, so I'll not include it all here.
@@ -71,7 +71,7 @@
                 As an example, here is a snippet of code from that very class which kills the player.
             </p>
 
-            <div class='highlight'><pre><code># Kill the player when they have no lives or fall out of the world
+            <div class="highlight"><pre><code># Kill the player when they have no lives or fall out of the world
 if self.player.lives <= 0 or self.player.rect.top > self.world_size[1]:
     # Stop all music and sounds
     pygame.mixer.music.stop()
@@ -84,16 +84,16 @@ if self.player.lives <= 0 or self.player.rect.top > self.world_size[1]:
     # Causes the player to jump up in the air when dead
     self.player.velocity.y = -self.player.jump_force</code></pre></div>
 
-            <h2><a name='screenshots' id='screenshots'></a>Screenshots:</h2>
+            <h2><a name="screenshots" id="screenshots"></a>Screenshots:</h2>
 
             <p>
                 Here are a few screenshots taken from inside the game.
             </p>
 
-            <img src='images/menu.png' width=49%>
-            <img src='images/lvl_1.png' width=49% style='float: right'>
-            <img src='images/lvl_2.png' width=49% style='margin-top: 2%'>
-            <img src='images/lvl_3.png' width=49% style='margin-top: 2%; float: right'>
+            <img class="shadow" src="images/menu.png" width=49%>
+            <img class="shadow" src="images/lvl_1.png" width=49% style="float: right">
+            <img class="shadow" src="images/lvl_2.png" width=49% style="margin-top: 2%">
+            <img class="shadow" src="images/lvl_3.png" width=49% style="margin-top: 2%; float: right">
         </div>
         <div class="background"></div>
     </div>

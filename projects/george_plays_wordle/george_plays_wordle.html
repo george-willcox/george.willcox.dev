@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="icon" href="../../images/favicon.png">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src=../../scripts/syntax_highlighter.js></script>
+    <title>George Willcox</title>
+</head>
+
+<body>
+    <div class="navigation">
+        <img class="logo shadow" src="../../images/G Logo.png" />
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../../cv/cv.html">CV</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                George Plays Wordle
+            </div>
+        </div>
+        <div class="main">
+            <h2>Contents:</h2>
+            
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#code">About the Program</a></li>
+                <li><a href="#words">Word List</a></li>
+            </ul>
+
+            <h2><a name="introduction" id="introduction"></a>Introduction:</h2>
+            <p>
+                Play the game at <a href="https://www.georgeplayswordle.fun">georgeplayswordle.fun</a>
+            </p>
+
+            <p>
+                This is an application I created using React.js, based on the popular Wordle.
+                It uses the same rules, but instead you're given three guesses at the start and you have to get the solution from that.
+                There is only ever one solution to a puzzle.
+            </p>
+
+            <p>
+                I've got a bit of experience working with React now, but this was still a good learning experience.
+                It's the first web app I deployed, and I'm reasonably happy with how it turned out.
+            </p>
+
+            <img class="shadow" src="images/chrome_YXTjz3AOiU.png" width=49%>
+            <img class="shadow" src="images/chrome_js0IQhDayc.png" width=49% style="float: right">
+
+            <h2><a name="code" id="code"></a>About the Program:</h2>
+            
+            <p>
+                This project began life in pygame, more as a proof of concept than anything else.
+                The code for this early version is not well polished, as most of my effort went into creating the React version,
+                but if you're interested you can download it here: <a download href="files/george_plays_wordle.zip" target="_blank">george_plays_wordle.zip</a>
+            </p>
+
+            <p>
+                For the web app, all the work for generating puzzles is done in the backend using Flask.
+                The algorithm for doing so involves picking the words for the puzzle,
+                making sure that the puzzle is within the restraints for the number of allowed green and yellow letters,
+                and then verifying that there is in fact only one solution.
+            </p>
+
+            <p>
+                I won't share the entire source code here,
+                but here is a code snippet of a function which given the guesses, a target, and the restraints,
+                returns whether that puzzle is within the provided restraints.
+            </p>
+
+            <div class="highlight" data-functions="append,items,replace,values,puzzle_within_restraints"><pre><code>def puzzle_within_restraints(guesses, target, max_green, max_yellow):
+    green = "-" * len(target)
+    yellow = {letter: [0] * len(guesses) for letter in target}
+    grey = []
+
+    for i, guess in enumerate(guesses):
+        count = {}
+        for letter in target:
+            if letter in count:
+                count[letter] += 1
+            else:
+                count[letter] = 1
+
+        for j, letter in enumerate(guess):
+            if letter == target[j]:
+                green = green[:j] + letter + green[j + 1:]
+                count[letter] -= 1
+
+        for j, letter in enumerate(guess):
+            if letter in count and count[letter] > 0 and letter != target[j]:
+                count[letter] -= 1
+                yellow[letter][i] += 1
+            elif letter not in yellow and letter not in grey:
+                grey.append(letter)
+
+    yellow = {letter: max(number) for letter, number in yellow.items()}
+
+    return len(green.replace("-", "")) <= max_green and sum(yellow.values()) + len(green.replace("-", "")) <= max_yellow + max_green</code></pre></div>
+
+            <h2><a name="words" id="words"></a>Word List:</h2>
+            
+            <p>
+                The word list used for what possible guesses come up is a curated list of about 20000 of the most frequent words in the English language.
+                This is as there are many words in the dictionary which are too obscure for most people to know,
+                and I wanted to avoid the feeling of being cheated when the answer is a word nobody's ever heard of.
+            </p>
+
+            <p>
+                With the help of some friends, I've removed all the proper nouns and non-words from the list,
+                but in the event some are still left in, there is a report button on the website which allows you to let me know if a word shouldn't come up.
+            </p>
+
+        </div>
+        <div class="background"></div>
+    </div>
+</body>
+
+</html>

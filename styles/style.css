@@ -66,12 +66,14 @@ body {
 .logo {
     position: relative;
     width: 150px;
-    box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.4);
 }
 
 #home-logo {
     position: absolute;
     width: 100px;
+}
+
+.shadow {
     box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.4);
 }
 
