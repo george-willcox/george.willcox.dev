@@ -59,7 +59,7 @@
             </p>
 
             <p>
-                Most of the work is done in the <code>update</code> method of <code>GameScene</code> in scenes.py.
+                Most of the work is done in the <code class="highlight inline">update</code> method of <code class="highlight inline">GameScene</code> in scenes.py.
                 This makes all the necessary method calls to other classes and essentially does all that is needed for the game to run.
                 It also does things like check if the player has run out of lives,
                 advance the level if the player has reached the end,
@@ -70,7 +70,7 @@
                 As an example, here is a snippet of code from that very class which kills the player.
             </p>
 
-            <div class="highlight"><pre># Kill the player when they have no lives or fall out of the world
+            <div class="highlight" data-functions="stop,play"><pre># Kill the player when they have no lives or fall out of the world
 if self.player.lives <= 0 or self.player.rect.top > self.world_size[1]:
     # Stop all music and sounds
     pygame.mixer.music.stop()

@@ -141,6 +141,7 @@ a:not(.non-text-link):active {
 }
 
 .inline {
+    position: relative;
     font-family: Consolas, monospace;
     font-size: 0.9rem !important;
     margin-top: 4px;
@@ -149,8 +150,9 @@ a:not(.non-text-link):active {
     border-radius: 3px;
     border: 1px solid #c7c7c7;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-    line-height: 225%;
+    line-height: 250%;
     white-space: nowrap;
+    top: -0.2rem;
 }
 
 .math {
