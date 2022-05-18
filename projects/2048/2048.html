@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="icon" href="../../images/favicon.png">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src=../../scripts/syntax_highlighter.js></script>
+    <title>George Willcox</title>
+</head>
+
+<body>
+    <div class="navigation">
+        <img class="logo shadow" src="../../images/G Logo.png" />
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../../interests/interests.html">Interests</a></li>
+            <li><a href="../../cv/cv.html">CV</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                This page is unlisted
+            </div>
+        </div>
+        <div class="main">
+            <p>
+                I've unlisted this page, just as I wrote this project in 2018, and since then my programming has improved significantly.
+                The result is nice, I think the game looks good, the coding style is just awful though.
+            </p>
+
+            <p>
+                If you've found this, feel free to have a look. I'm just not proud of it any more. I may redo it at some point.
+            </p>
+            
+            <h2>
+                2048
+            </h2>
+            
+            <p>
+                Download the source code here: <a href="files/2048.zip" download>2048.zip</a>
+            </p>
+            
+            <p>
+                This is a just a remake of the popular game 2048.
+                You slide tiles orthogonally, combining those of the same value.
+                The goal being to create a tile with the value 2048.
+            </p>
+
+            <img class="shadow" src="images/python_1a7txNh3tE.png" width=49%>
+            <img class="shadow" src="images/python_NfbqSJraet.png" width=49% style="float: right;">
+            
+            <p>
+                My implementation uses a 4x4 2-dimensional array to store the value of the tile in each location.
+                Then, depending on which direction the tiles are being slid in,
+                moves them as far in that direction as there is space for, combining where possible.
+            </p>
+
+            <p>
+                Code to draw rounded rectangle:
+            </p>
+
+            <div class="highlight" data-functions="draw_rounded_rect,polygon,circle" data-classes="pygame"><pre>def draw_rounded_rect(rect, radius, colour, surface=SCREEN):
+    """
+    Can draw a rectangle with corners that are rounded to a given radius
+    :param (int, int, int, int) rect: The coordinates of the shape (x, y, width, height)
+    :param int radius: The radius of the corners
+    :param (int, int, int) colour: The colour of the shape
+    :param Surface surface: The surface to draw the shape to
+    :return: None
+    """
+    pointlist = ((rect[0] + radius, rect[1]), (rect[0] + rect[2] - radius, rect[1]), (rect[0] + rect[2], rect[1] + radius),
+                 (rect[0] + rect[2], rect[1] + rect[3] - radius), (rect[0] + rect[2] - radius, rect[1] + rect[3]),
+                 (rect[0] + radius, rect[1] + rect[3]), (rect[0], rect[1] + rect[3] - radius), (rect[0], rect[1] + radius))
+    pygame.draw.polygon(surface, colour, pointlist)
+
+    for point in ((rect[0] + radius, rect[1] + radius), (rect[0] + rect[2] - radius, rect[1] + radius),
+                  (rect[0] + rect[2] - radius, rect[1] + rect[3] - radius),
+                  (rect[0] + radius, rect[1] + rect[3] - radius)):
+        pygame.draw.circle(surface, colour, point, radius)</pre></div>
+
+        </div>
+        <div class="background"></div>
+    </div>
+</body>
+
+</html>
