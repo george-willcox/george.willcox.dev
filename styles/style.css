@@ -10,6 +10,7 @@ body {
     font-weight: 300;
     position: relative;
     color: #444;
+    overflow-y: scroll;
 }
 
 .background {
@@ -103,13 +104,14 @@ a {
     transition-duration: 0.3s;
 }
 
-a:link,
+a,
 a:visited,
 a:active {
     color: inherit;
     padding-left: 3px;
     padding-right: 3px;
     border-radius: 5px;
+    text-decoration: underline;
     text-decoration-color: #CCCCCC;
 }
 
@@ -157,4 +159,15 @@ a:not(.non-text-link):active {
 
 .math {
     overflow: auto;
+}
+
+.accordion {
+    user-select: none;
+}
+
+.collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    padding: 0 18px;
 }

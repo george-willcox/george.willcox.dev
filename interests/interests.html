@@ -5,6 +5,17 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="icon" href="../images/favicon.png">
     <title>George Willcox</title>
+    <style>
+        .arrow-list li {
+            list-style: none;
+        }
+        .arrow-list li::before {
+            content: "\2BC8";
+        }
+        .open::before {
+            content: "\2BC6" !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,10 +36,87 @@
             </div>
         </div>
         <div class="main">
-            <h2><i>More to come</i></h2>
+            <ul class="arrow-list">
+                <li><a class="accordion">Lego Star Wars</a></li>
+                <div class="collapse">
+                    <p>
+                        content
+                    </p>
+                </div>
+                <li><a class="accordion">Magic the Gathering</a></li>
+                <div class="collapse">
+                    <p></p>
+                    <img class="shadow" src="images/ghen-arcanum-weaver.png" width=40%>
+                    <p></p>
+                </div>
+                <li><a class="accordion">Kayaking</a></li>
+                <div class="collapse">
+                    <p>
+                        I've kayaked quite a bit previously, but until recently never owned my own.
+                        So I bought an old one second hand and spent the summer doing it up.
+                    </p>
+                    
+                    <p>
+                        Here are some pictures of before and after my work on it.
+                    </p>
+
+                    <img class="shadow" src="images/IMG_4693.PNG" width=35.5%>
+                    <img class="shadow" src="images/IMG_4435.JPG" width=63% style="float: right;">
+                    
+                    <p>
+                        In order to restore it, I first had to clean it and sand off the old paint job.
+                        This proved to be more difficult than expected, especially around the rim of the cockpit where it was awkward to reach.
+                    </p>
+
+                    <p>
+                        After that, I primed and painted the boat, giving it several coats of each colour;
+                        using masking tape to get a clean line between the green and the yellow.
+                        After painting was finished, I sprayed the whole thing with a marine sealant.
+                        Here are some pictures from along that process.
+                    </p>
+                    
+                    <img class="shadow" src="images/IMG_4412.JPG" width=49%>
+                    <img class="shadow" src="images/IMG_4429.JPG" width=49% style="float: right;">
+                    <img class="shadow" src="images/IMG_4431.JPG" width=49% style="margin-top: 2%;">
+                    <img class="shadow" src="images/IMG_4432.JPG" width=49% style="float: right; margin-top: 2%;">
+                    
+                    <p>
+                        Then some pictures of it out and about:
+                    </p>
+                    
+                    <img class="shadow" src="images/IMG_4878.JPG" width=32% style="margin-right: 1%;">
+                    <img class="shadow" src="images/IMG_4869.JPG" width=32% style="margin-right: 1%;">
+                    <img class="shadow" src="images/IMG_4881.JPG" width=32% style="float: right;">
+                    <p></p>
+                </div>
+                <li><a class="accordion">Model Making</a></li>
+                <div class="collapse">
+                    <p>
+                        content
+                    </p>
+                </div>
+            </ul>
         </div>
         <div class="background"></div>
-    </div> 
+    </div>
+
+    <script>
+        var accordion = document.getElementsByClassName("accordion");
+
+        for (var i = 0; i < accordion.length; i++) {
+            accordion[i].addEventListener("click", function () {
+                var collapse = this.parentElement.nextElementSibling;
+                this.parentElement.classList.toggle("open");
+                if (collapse.style.maxHeight) {
+                    collapse.style.transitionDuration = "0.25s";
+                    collapse.style.maxHeight = null;
+                } else {
+                    collapse.style.transitionDuration = Math.max(collapse.scrollHeight / 1500, 0.25) + "s";
+                    collapse.style.maxHeight = collapse.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
