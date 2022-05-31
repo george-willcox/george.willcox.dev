@@ -5,7 +5,7 @@ window.addEventListener('scroll', function () {
     if (window.innerWidth < 1260 || window.innerHeight < 700) {
         let navigation = document.getElementsByClassName('navigation')[0];
         let elements = navigation.getElementsByTagName("li");
-        if ((document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) && document.body.scrollHeight > window.innerHeight) {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             navigation.style.backgroundColor = '#444';
             navigation.style.color = 'white';
             navigation.style.boxShadow = '0 4px 12px 0 rgba(0, 0, 0, 0.3)';
