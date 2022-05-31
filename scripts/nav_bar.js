@@ -1,7 +1,7 @@
 window.dispatchEvent(new Event('scroll'));  // Just to make sure styling is correct if page is refreshed
 
 window.addEventListener('scroll', function () {
-    if (window.innerWidth < 1260) {
+    if (window.innerWidth < 1260 || this.window.innerHeight < 700) {
         let navigation = document.getElementsByClassName('navigation')[0];
         let elements = navigation.getElementsByTagName("li");
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -22,7 +22,7 @@ window.addEventListener('scroll', function () {
 });
 
 window.addEventListener('resize', function () {
-    if (window.innerWidth >= 1260) {
+    if (window.innerWidth >= 1260 && window.innerHeight >= 700) {
         let navigation = document.getElementsByClassName('navigation')[0];
         navigation.style = null;
     }
