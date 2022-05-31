@@ -1,4 +1,6 @@
-window.dispatchEvent(new Event('scroll'));  // Just to make sure styling is correct if page is refreshed
+window.addEventListener('load', function () {
+    window.dispatchEvent(new Event('scroll'));  // Just to make sure styling is correct if page is refreshed
+})
 
 window.addEventListener('scroll', function () {
     if (window.innerWidth < 1260 || window.innerHeight < 700) {
