@@ -42,8 +42,7 @@ body {
 .navigation ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    padding-top: 45px;
+    padding: 45px 0 0 0;
 }
 
 .navigation li {
@@ -54,6 +53,40 @@ body {
 
 .navigation li:last-child {
     border-bottom: none;
+}
+
+@media screen and (max-width: 1260px), (max-height: 700px) {
+    /* Mobile styling */
+    .navigation {
+        left: 0;
+        top: 0;
+        width: 100%;
+        transition: all .4s ease-in-out;
+        z-index: 1;
+    }
+
+    .navigation ul {
+        padding: 0;
+    }
+
+    .navigation li {
+        display: inline-block;
+        border-bottom: none;
+        padding: 25px 15px;
+        transition: all .4s ease-in-out, color 1ms;
+    }
+
+    .navigation img {
+        display: none;
+    }
+
+    .header {
+        padding-top: max(35%, 200px) !important;
+    }
+
+    .content {
+        margin-right: 25% !important;
+    }
 }
 
 /* Temporary mobile styling */
