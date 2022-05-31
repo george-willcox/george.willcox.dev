@@ -25,5 +25,7 @@ window.addEventListener('resize', function () {
     if (window.innerWidth >= 1260 && window.innerHeight >= 700) {
         let navigation = document.getElementsByClassName('navigation')[0];
         navigation.style = null;
+    } else {
+        window.dispatchEvent(new Event('scroll'));
     }
 });
