@@ -1,7 +1,6 @@
 window.dispatchEvent(new Event('scroll'));  // Just to make sure styling is correct if page is refreshed
 
 window.addEventListener('scroll', function () {
-    console.log(document.body.scrollHeight);
     if (window.innerWidth < 1260 || window.innerHeight < 700) {
         let navigation = document.getElementsByClassName('navigation')[0];
         let elements = navigation.getElementsByTagName("li");
