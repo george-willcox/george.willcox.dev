@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="icon" href="../images/favicon.png">
     <script async src=../scripts/nav_bar.js></script>
+    <script async src=../scripts/accordion.js></script>
     <title>George Willcox</title>
     <style>
         .arrow-list li {
@@ -13,13 +14,14 @@
         }
         .arrow-list li::before {
             position: absolute;
+            top: -2px;
             left: -22px;
             font-family: sans-serif;
-            content: "\25B6";
+            content: "\2B9E";
         }
         .open::before {
             left: -25px !important;
-            content: "\25BC" !important;
+            content: "\2B9F" !important;
         }
     </style>
 </head>
@@ -43,6 +45,9 @@
         </div>
         <div class="main">
             <!-- Need to replace the images with low res versions to improve loading time -->
+            <noscript><span style="color: red;"><b>
+                You'll need to enable javascript for this drop-down menu to work.
+            </b></span></noscript>
             <ul class="arrow-list">
                 <li><a class="accordion">Lego Star Wars</a></li>
                 <div class="collapse">
@@ -125,24 +130,6 @@
         </div>
         <div class="background"></div>
     </div>
-
-    <script>
-        var accordion = document.getElementsByClassName("accordion");
-
-        for (var i = 0; i < accordion.length; i++) {
-            accordion[i].addEventListener("click", function () {
-                var collapse = this.parentElement.nextElementSibling;
-                this.parentElement.classList.toggle("open");
-                if (collapse.style.maxHeight) {
-                    collapse.style.transitionDuration = "0.25s";
-                    collapse.style.maxHeight = null;
-                } else {
-                    collapse.style.transitionDuration = Math.max(collapse.scrollHeight / 1500, 0.25) + "s";
-                    collapse.style.maxHeight = collapse.scrollHeight + "px";
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
