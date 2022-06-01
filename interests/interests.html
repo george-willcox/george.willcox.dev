@@ -8,15 +8,18 @@
     <title>George Willcox</title>
     <style>
         .arrow-list li {
+            position: relative;
             list-style: none;
         }
         .arrow-list li::before {
+            position: absolute;
+            left: -22px;
             font-family: sans-serif;
-            content: "\2BC8";
+            content: "\25B6";
         }
         .open::before {
-            font-family: sans-serif;
-            content: "\2BC6" !important;
+            left: -25px !important;
+            content: "\25BC" !important;
         }
     </style>
 </head>
