@@ -30,7 +30,6 @@ class Triangle {
     }
 }
 
-
 window.onload = () => {
     createCanvas();
     start();
@@ -98,7 +97,7 @@ function doTriangulation(points, buffer) {
     ].concat(points);
 
     let triangles = [new Triangle(points.slice(0, 3)), new Triangle(points.slice(1, 4))];
-    points.slice(4).forEach(function(point, j) {
+    points.slice(4).forEach(function(point) {
         let trianglesToRemove = [];
         triangles.forEach(function(triangle) {
             if (triangle.inCircumcircle(point)) {

@@ -2,8 +2,36 @@
     <head>
         <link rel="icon" href="../../images/favicon.png">
         <title>George Willcox</title>
+        <style>
+            .arrow {
+                position: absolute;
+                left: 10px;
+                top: 20px;
+            }
+
+            .arrow g:hover {
+                fill: #EEEEEE;
+                stroke: #EEEEEE;
+            }
+        </style>
     </head>
     <body scroll="no" style="margin: 0;">
+        <noscript>
+            <p><span style="color: red;"><b>
+                You'll need to enable javascript for this demonstration to work
+            </b></span></p>
+            <a href="../delaunay_triangulation.html">Go back</a>
+        </noscript>
         <script src="triangulation.js"></script>
+        
+        <svg class="arrow" width="100px" preserveAspectRatio="x200Y200 meet" viewBox="0 0 200 200" style="transform: scale(-1,1)">
+            <a href="../delaunay_triangulation.html">
+                <g fill="#333333" stroke="#333333" stroke-width="3.44" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M151.02116,76.87712l-47.29656,-47.29656c-5.04132,-5.03788 -13.20616,-5.04476 -18.24404,0c-5.03788,5.03616 -5.03788,13.20444 0,18.23888l25.28056,25.28056h-80.66112c-7.12424,0 -12.9,5.77404 -12.9,12.9c0,7.12596 5.77576,12.9 12.9,12.9h80.66112l-25.284,25.284c-5.03788,5.031 -5.04304,13.19928 0,18.23544c5.03444,5.04476 13.20444,5.03788 18.24576,0l47.29656,-47.29484c5.0396,-5.04132 5.03616,-13.2096 0.00172,-18.24748z">
+                    </path>
+                </g>
+            </a>
+        </svg>
     </body>
 </html>
