@@ -66,9 +66,6 @@ function start() {
 }
 
 function update(points, buffer) {
-    ctx.fillStyle = "white"
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     points.forEach(function(point, i) {
         let w = (innerWidth + 2 * buffer);
         let h = (innerHeight + 2 * buffer);
