@@ -65,7 +65,7 @@ function start() {
 }
 
 function update(points, buffer) {
-    points.forEach(function(point, i) {
+    points.forEach(function(point) {
         let w = (innerWidth + 2 * buffer);
         let h = (innerHeight + 2 * buffer);
         point.position[0] = ((point.position[0] + point.velocity[0] + buffer) % w + w) % w - buffer;
@@ -114,7 +114,12 @@ function doTriangulation(points, buffer) {
         });
 
         pointsIncluded = [...new Set(pointsIncluded)];
-        pointsIncluded.sort(function (a, b) { return Math.atan2(a.position[1] - point.position[1], a.position[0] - point.position[0]) - Math.atan2(b.position[1] - point.position[1], b.position[0] - point.position[0]) });
+        pointsIncluded.sort(function (a, b) {
+            return (
+                Math.atan2(a.position[1] - point.position[1], a.position[0] - point.position[0]) - 
+                Math.atan2(b.position[1] - point.position[1], b.position[0] - point.position[0])
+            )
+        });
 
         pointsIncluded.forEach(function(p, i) {
             triangles.push(new Triangle([point, p, pointsIncluded.at(i - 1)]));

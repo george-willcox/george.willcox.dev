@@ -9,7 +9,7 @@ function syntax_highlighter(element, _, _) {
     var lang = (element.getAttribute('data-language') || 'python').toLowerCase();
     var element_text = element.innerHTML;
     var python_colours = { text: '#d4d4d4', keyword: '#c586c0', keyword2: '#569cd6', string: '#ce9178', number: '#b5cea8', function: '#dcdcaa', class: '#4ec9b0', comment: '#6a9955' };
-    var js_colours = { text: '#9cdcfe', symbol: '#d4d4d4', keyword: '#c586c0', keyword2: '#569cd6', string: '#ce9178', number: '#b5cea8', function: '#dcdcaa', comment: '#6a9955' };
+    var js_colours = { text: '#9cdcfe', symbol: '#d4d4d4', keyword: '#c586c0', keyword2: '#569cd6', string: '#ce9178', number: '#b5cea8', function: '#dcdcaa', class: '#4ec9b0', comment: '#6a9955' };
     if (lang == 'python') { element_text = pythonMode(element); }
     if (lang == 'js') { element_text = jsMode(element); }
     element.innerHTML = element_text;
@@ -77,6 +77,11 @@ function syntax_highlighter(element, _, _) {
         } catch (error) {
             func_words = [];
         }
+        try {
+            class_words = element.getAttribute('data-classes').split(',');
+        } catch (error) {
+            class_words = [];
+        }
         while (true) {
             sqstr_pos = getPos(rest, "'", "'", js_colours['string']);
             dqstr_pos = getPos(rest, '"', '"', js_colours['string']);
@@ -86,8 +91,9 @@ function syntax_highlighter(element, _, _) {
             keyword_pos = getWordPos('keyword', rest, js_colours['keyword'], []);
             keyword_pos2 = getWordPos('keyword2', rest, js_colours['keyword2'], []);
             func_pos = getWordPos('function', rest, js_colours['function'], func_words);
-            if (Math.max(num_pos[0], sym_pos[0], sqstr_pos[0], dqstr_pos[0], com_pos[0], keyword_pos[0], keyword_pos2[0], func_pos[0]) == -1) { break; }
-            mypos = getMinPos(num_pos, sym_pos, sqstr_pos, dqstr_pos, com_pos, keyword_pos, keyword_pos2, func_pos);
+            class_pos = getWordPos('class', rest, js_colours['class'], class_words);
+            if (Math.max(num_pos[0], sym_pos[0], sqstr_pos[0], dqstr_pos[0], com_pos[0], keyword_pos[0], keyword_pos2[0], func_pos[0], class_pos[0]) == -1) { break; }
+            mypos = getMinPos(num_pos, sym_pos, sqstr_pos, dqstr_pos, com_pos, keyword_pos, keyword_pos2, func_pos, class_pos);
             if (mypos[0] == -1) { break; }
             if (mypos[0] > -1) {
                 done += rest.substring(0, mypos[0]);
@@ -156,7 +162,10 @@ function syntax_highlighter(element, _, _) {
                     "instanceof", "let", "new", "null", "super", "this", "true", "typeof", "var", "void"];
             }
             else if (typ == 'function') {
-                words = ['eval', 'isNaN']
+                words = ['eval', 'isNaN'];
+            }
+            else {
+                words =  [];
             }
         }
         words = words.concat(custom_words);

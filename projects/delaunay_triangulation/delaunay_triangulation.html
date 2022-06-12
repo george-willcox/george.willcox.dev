@@ -29,14 +29,109 @@
             </div>
         </div>
         <div class="main">
-            <noscript><span style="color: red;"><b>
-                You'll need to enable javascript for syntax highlighting and maths rendering to work.
-            </b></span></noscript>
-
             <p>
                 <a href="demonstration/demonstration.html">See a demonstration here</a>
             </p>
 
+            <h2>Contents:</h2>
+            
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#algorithm">Algorithm</a></li>
+                <li><a href="#code">About the Code</a></li>
+            </ul>
+
+            <noscript><span style="color: red;"><b>
+                You'll need to enable javascript for syntax highlighting and maths rendering to work.
+            </b></span></noscript>
+
+            <h2><a name="introduction" id="introduction"></a>Introduction:</h2>
+
+            <p>
+                A Delaunay triangulation of a set of points \(P\) is a triangulation \(\text{DP}(P)\) such that no point in \(P\) lies in the circumcircle of any triangle in \(\text{DP}(P)\).
+                This has the effect of maximising the minimum angle of every triangle in the triangulation, which creates a tendency to avoid thin "sliver" triangles. 
+            </p>
+
+            <p>
+                This has applications in 3D graphics, as it allows a mesh to be generated from a set of points in 3D space.
+                Though here I'm just using it in 2-dimensions for the sake of making a nice pattern.
+            </p>
+
+            <h2><a name="algorithm" id="algorithm"></a>Algorithm:</h2>
+
+            <p>
+                The algorithm I'm using to generate the triangulation involves incrementally adding points into the triangulation, and adjusting it to accommodate them.
+            </p>
+
+            <p>
+                For each point, delete all the triangles that it is within the circumcircle of,
+                then form new triangles by creating a new edge from that point to each of the vertices that were in the triangles that have been deleted.
+            </p>
+
+            <p>
+                To easily determine if a point \(D\) lies inside the circumcircle of a triangle \(\bigtriangleup ABC\), you can calculate the determinant of the matrix.
+                If the points \(A\), \(B\), and \(C\) are in anti-clockwise order, then the determinant will always be greater than 0.
+            </p>
+            <p class="math">
+                \[
+                \begin{bmatrix}A_x & A_y & A_x^2 + A_y^2 & 1 \\\ B_x & B_y & B_x^2 + B_y^2 & 1 \\\ C_x & C_y & C_x^2 + C_y^2 & 1 \\\ D_x & D_y & D_x^2 + D_y^2 & 1\end{bmatrix} > 0
+                \]
+            </p class="math">
+            
+            <h2><a name="code" id="code"></a>About the Code:</h2>
+          
+            <p>
+                Shown below is the function that creates the triangulation, taking an array of points and returning an array of triangles.
+                It begins by creating 4 points outside of the window that are needed as a starting point for the algorithm to work,
+                then each point is added into the triangulation one at a time.
+                The buffer variable represents points being able to go off-screen by some amount, as this just makes the pattern look nicer by not being able to see the edges.
+            </p>
+
+            <p>
+                Once the triangles have been removed for a given point, the vertices in those triangles are sorted by their angle to the point being worked on.
+                This makes it easy to create the new triangles for that point.
+            </p>
+
+            <div class="highlight" data-language="js" data-classes="Triangle,Set" data-functions="blend,slice,inCircumcircle,push,concat,indexOf,splice,atan2,sort,forEach,doTriangulation"><pre><code>function doTriangulation(points, buffer) {
+    points = [
+        { position: [-10 - buffer, -10 - buffer], velocity: [0, 0] },
+        { position: [canvas.width + 10 +  buffer, -10 - buffer], velocity: [0, 0] },
+        { position: [-10 - buffer, canvas.height + 10 + buffer], velocity: [0, 0] },
+        { position: [canvas.width + 10 + buffer, canvas.height + 10 + buffer], velocity: [0, 0] }
+    ].concat(points);
+
+    let triangles = [new Triangle(points.slice(0, 3)), new Triangle(points.slice(1, 4))];
+    points.slice(4).forEach(function(point) {
+        let trianglesToRemove = [];
+        triangles.forEach(function(triangle) {
+            if (triangle.inCircumcircle(point)) {
+                trianglesToRemove.push(triangle);
+            }
+        });
+
+        let pointsIncluded = [];
+        trianglesToRemove.forEach(function(triangle) {
+            triangle.points.forEach(function(p) {
+                pointsIncluded.push(p);
+            });
+            triangles.splice(triangles.indexOf(triangle), 1);
+        });
+
+        pointsIncluded = [...new Set(pointsIncluded)];
+        pointsIncluded.sort(function (a, b) {
+            return (
+                Math.atan2(a.position[1] - point.position[1], a.position[0] - point.position[0]) -
+                Math.atan2(b.position[1] - point.position[1], b.position[0] - point.position[0])
+            )
+        });
+
+        pointsIncluded.forEach(function(p, i) {
+            triangles.push(new Triangle([point, p, pointsIncluded.at(i - 1)]));
+        });
+    });
+
+    return triangles
+}</code></pre></div>
         </div>
         <div class="background"></div>
     </div>
