@@ -1,6 +1,11 @@
 var canvas;
 var ctx;
 var interval;
+var speed;
+var numPoints;
+var topColour;
+var bottomColour;
+var badParams = false;
 
 class Triangle {
     constructor(points) {
@@ -52,16 +57,22 @@ function createCanvas() {
 function start() {
     canvas.width = innerWidth;
     canvas.height = innerHeight - 1;
-    
+
+    getURLParams();
+
     var buffer = 100;
-    var points = Array.apply(null, Array(100)).map(function () {
+    var points = Array.apply(null, Array(numPoints)).map(function () {
         return {
             position: [Math.random() * (innerWidth + 2 * buffer) - buffer, Math.random() * (innerHeight + 2 * buffer) - buffer],
-            velocity: [Math.random() - 0.5, Math.random() - 0.5]
+            velocity: [(Math.random() - 0.5) * (speed / 100), (Math.random() - 0.5) * (speed / 100)]
         }
     });
     
-    interval = setInterval(() => update(points, buffer), 20);
+    if (!badParams) {
+        interval = setInterval(() => update(points, buffer), 20);
+    } else {
+        drawBadParamsMessage();
+    }
 }
 
 function update(points, buffer) {
@@ -75,7 +86,7 @@ function update(points, buffer) {
     let triangles = doTriangulation(points, buffer);
 
     triangles.forEach(function(triangle) {
-        ctx.fillStyle = blend([115, 240, 95], [11, 113, 88], triangle.meanHeight());
+        ctx.fillStyle = blend(bottomColour, topColour, triangle.meanHeight());
         ctx.beginPath();
         ctx.moveTo(triangle.points[2].position[0], triangle.points[2].position[1]);
         triangle.points.forEach(function(point) {
@@ -135,4 +146,60 @@ function blend(colour1, colour2, blendValue) {
     let b = colour1[2] * blendValue + colour2[2] * (1 - blendValue);
 
     return "rgb(" + r + "," + g + "," + b + ")";
+}
+
+function getURLParams() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    topColour = urlParams.get('top_colour')
+    if (topColour !== null) {
+        topColour = topColour.split(',').map(i => { return parseInt(i) });
+
+        if (isNaN(topColour[0]) || isNaN(topColour[1]) || isNaN(topColour[2]) || topColour.length != 3) {
+            badParams = true;
+        }
+    }
+    else {
+        topColour = [11, 113, 88]
+    }
+
+    bottomColour = urlParams.get('bottom_colour')
+    
+    if (bottomColour !== null) {
+        bottomColour = bottomColour.split(',').map(i => { return parseInt(i) });
+
+        if (isNaN(bottomColour[0]) || isNaN(bottomColour[1]) || isNaN(bottomColour[2]) || bottomColour.length != 3) {
+            badParams = true;
+        }
+    }
+    else {
+        bottomColour = [115, 240, 95]
+    }
+
+    speed = parseInt(urlParams.get('speed'));
+    numPoints = parseInt(urlParams.get('num_points'));
+
+    if (isNaN(speed)) {
+        speed = 100;
+    }
+    if (isNaN(numPoints)) {
+        numPoints = 100;
+    }
+}
+
+function drawBadParamsMessage() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "bold 30px Helvetica";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText("Bad Colour Parameters", canvas.width / 2, canvas.height / 2);
+
+    let boxSize = [500, 150];
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.roundRect(canvas.width / 2 - boxSize[0] / 2, canvas.height / 2 - boxSize[1] / 2 - 5, boxSize[0], boxSize[1], 20);
+    ctx.stroke();
 }
