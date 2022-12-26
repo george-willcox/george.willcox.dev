@@ -161,7 +161,7 @@ function getURLParams() {
         }
     }
     else {
-        topColour = [11, 113, 88]
+        topColour = [0, 0, 0]
     }
 
     bottomColour = urlParams.get('bottom_colour')
@@ -174,7 +174,7 @@ function getURLParams() {
         }
     }
     else {
-        bottomColour = [115, 240, 95]
+        bottomColour = [255, 255, 255]
     }
 
     speed = parseInt(urlParams.get('speed'));
