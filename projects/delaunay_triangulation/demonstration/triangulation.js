@@ -191,15 +191,15 @@ function getURLParams() {
 function drawBadParamsMessage() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "bold 30px Helvetica";
+    ctx.font = "bold 50px Helvetica";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText("Bad Colour Parameters", canvas.width / 2, canvas.height / 2);
 
-    let boxSize = [500, 150];
+    let boxSize = [750, 250];
     ctx.strokeStyle = 'red';
     ctx.lineWidth = 10;
     ctx.beginPath();
-    ctx.roundRect(canvas.width / 2 - boxSize[0] / 2, canvas.height / 2 - boxSize[1] / 2 - 5, boxSize[0], boxSize[1], 20);
+    ctx.roundRect(canvas.width / 2 - boxSize[0] / 2, canvas.height / 2 - boxSize[1] / 2 - 15, boxSize[0], boxSize[1], 20);
     ctx.stroke();
 }
