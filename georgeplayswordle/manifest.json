@@ -1,0 +1,10 @@
+{
+  "short_name": "George Plays Wordle",
+  "name": "George Plays Wordle",
+  "icons": [
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

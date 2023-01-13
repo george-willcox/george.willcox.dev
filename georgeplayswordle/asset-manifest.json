@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "./georgeplayswordle/static/css/main.4c4928a6.css",
+    "main.js": "./georgeplayswordle/static/js/main.4d1f23f7.js",
+    "static/js/787.3b54ecb9.chunk.js": "./georgeplayswordle/static/js/787.3b54ecb9.chunk.js",
+    "index.html": "./georgeplayswordle/index.html",
+    "main.4c4928a6.css.map": "./georgeplayswordle/static/css/main.4c4928a6.css.map",
+    "main.4d1f23f7.js.map": "./georgeplayswordle/static/js/main.4d1f23f7.js.map",
+    "787.3b54ecb9.chunk.js.map": "./georgeplayswordle/static/js/787.3b54ecb9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c4928a6.css",
+    "static/js/main.4d1f23f7.js"
+  ]
+}
