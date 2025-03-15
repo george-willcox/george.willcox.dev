@@ -30,6 +30,34 @@
             }
 
             .img1 {
+                width: 42.2%;
+            }
+            .img1.small {
+                width: 23.5% !important;
+            }
+
+            .img1.large {
+                width: 63% !important;
+            }
+
+            .img2 {
+                width: 56.3%;
+            }
+            .img2.small {
+                width: 35.5% !important;
+            }
+
+            .img2.large {
+                width: 75% !important;
+            }
+        }
+
+        .size-2 {
+            img {
+                transition: width 0.5s ease-in-out;
+            }
+
+            .img1 {
                 width: 35.5%;
             }
             .img1.small {
@@ -51,6 +79,7 @@
                 width: 85% !important;
             }
         }
+
     </style>
 </head>
 
@@ -87,9 +116,11 @@
                     <p>
                         Here are some pictures of before and after my work on it.
                     </p>
-
-                    <img class="shadow" src="images/IMG_4693.PNG" width=35.5%>
-                    <img class="shadow" src="images/IMG_4435.JPG" width=63% style="float: right;">
+                    
+                    <div class="image-container size-2">
+                        <img class="shadow img1" src="images/IMG_4693.PNG">
+                        <img class="shadow img2" src="images/IMG_4435.JPG" style="float: right;">
+                    </div>
                     
                     <p>
                         In order to restore it, I first had to clean it and sand off the old paint job.
@@ -103,11 +134,14 @@
                         Here are some pictures from along that process.
                     </p>
                     
-                    <img class="shadow" src="images/IMG_4412.JPG" width=49%>
-                    <img class="shadow" src="images/IMG_4429.JPG" width=49% style="float: right;">
-                    <img class="shadow" src="images/IMG_4431.JPG" width=49% style="margin-top: 2%;">
-                    <img class="shadow" src="images/IMG_4432.JPG" width=49% style="float: right; margin-top: 2%;">
-                    
+                    <div class="image-container">
+                        <img class="shadow" src="images/IMG_4412.JPG">
+                        <img class="shadow" src="images/IMG_4429.JPG" style="float: right;">
+                    </div>
+                    <div class="image-container" style="margin-top: 2%;">
+                        <img class="shadow" src="images/IMG_4431.JPG">
+                        <img class="shadow" src="images/IMG_4432.JPG" style="float: right;">
+                    </div>
                     <p>
                         Then some pictures of it out and about:
                     </p>
@@ -171,16 +205,35 @@
                         I'll later add my own images.
                     </p>
                 </div>
-                <li><a class="accordion">Model Making</a></li>
+                <li><a class="accordion">Warhammer 40k</a></li>
                 <div class="collapse">
                     <p>
-                        Just WW2 things really, mostly land vehicles but also some planes and boats too.
-                        I'll add pictures later. The Churchill Crocodile is probably my favourite model.
+                        Got into model building through Airfix WW2 models, and eventually got into Warhammer 40k.
+                        Here is a small selection of the models that I've built and painted.
+                    </p>
+                    <p>
+                        I'm quite into the tabletop side of the hobby now too, and play the game regularly at a local club.
+                        My main faction is Necrons
                     </p>
 
                     <div class="image-container size-1">
-                        <img class="shadow img1" src="images/Hellblaster.jpg">
-                        <img class="shadow img2" src="images/Wraith.jpg" style="float: right;">
+                        <img class="shadow img2" src="images/Hellblaster.jpg">
+                        <img class="shadow img1" src="images/Wraith.jpg" style="float: right;">
+                    </div>
+
+                    <div class="image-container size-1">
+                        <img class="shadow img1" src="images/Tesseract Ark.jpg">
+                        <img class="shadow img2" src="images/Deathmarks.jpg" style="float: right;">
+                    </div>
+
+                    <div class="image-container size-1">
+                        <img class="shadow img2" src="images/Lychguard.jpg">
+                        <img class="shadow img1" src="images/Nightbringer.jpg" style="float: right;">
+                    </div>
+
+                    <div class="image-container">
+                        <img class="shadow" src="images/Tyrant Front.jpg">
+                        <img class="shadow" src="images/Tyrant Back.jpg" style="float: right;">
                     </div>
                 </div>
             </ul>
