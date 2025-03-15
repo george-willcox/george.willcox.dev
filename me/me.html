@@ -6,33 +6,9 @@
     <link rel="icon" href="../images/favicon.png">
     <script async src=../scripts/nav_bar.js></script>
     <script async src=../scripts/accordion.js></script>
+    <script async src=../scripts/image-container.js></script>
     <title>George Willcox</title>
     <style>
-        .image-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 1.5%;
-
-            
-        }
-
-        .equal {
-            img {
-                width: 49.25%;
-                transition: width 0.5s ease-in-out;
-            }
-
-            .small {
-                width: 35.5%;
-            }
-
-            .large {
-                width: 63%;
-            }
-        }
-
         .size-1 {
             img {
                 transition: width 0.5s ease-in-out;
@@ -122,61 +98,13 @@
                 <img class="shadow img1" src="images/6.JPG">
                 <img class="shadow img2" src="images/5.JPG" style="float: right;">
             </div>
-            <div class="image-container equal">
+            <div class="image-container">
                 <img class="shadow" src="images/7.JPG">
                 <img class="shadow" src="images/8.JPG" style="float: right;">
             </div>
         </div>
         <div class="background"></div>
     </div>
-
-    <script>
-    document.querySelectorAll('.image-container').forEach(container => {
-        const images = container.querySelectorAll('img');
-
-        let touchStartX = 0;
-        let touchStartY = 0;
-    
-        function toggleSize(clickedImg) {
-            if (clickedImg.classList.contains("large")) {
-                // Reset both to equal size
-                images.forEach(img => {
-                    img.classList.remove("large", "small");
-                });
-
-            } else {
-                console.log("togged")
-                // Make clicked image large and the other small
-                images.forEach(img => {
-                    img.classList.toggle("large", img === clickedImg);
-                    img.classList.toggle("small", img !== clickedImg);
-                });
-            }
-        }
-
-        images.forEach(img => {
-            img.addEventListener("mouseenter", function () {
-                toggleSize(this);
-            });
-
-            img.addEventListener("touchstart", function (e) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            });
-
-            img.addEventListener("touchend", function (e) {
-            // Only trigger the toggle size logic if there was no significant movement (indicating a tap)
-            const touchMoveX = e.changedTouches[0].clientX;
-            const touchMoveY = e.changedTouches[0].clientY;
-
-            // If the movement was small (i.e., a tap), trigger toggleSize
-            if (Math.abs(touchMoveX - touchStartX) <= 10 && Math.abs(touchMoveY - touchStartY) <= 10) {
-                toggleSize(this);
-            }
-        });
-        });
-    });
-    </script>
 </body>
 
 </html>
