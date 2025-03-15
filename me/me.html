@@ -1,0 +1,160 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../images/favicon.png">
+    <script async src=../scripts/nav_bar.js></script>
+    <script async src=../scripts/accordion.js></script>
+    <title>George Willcox</title>
+    <style>
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1.5%;
+        }
+
+        .image-container img {
+            transition: width 0.5s ease-in-out;
+        }
+
+        .small {
+            width: 35.5%;
+        }
+
+        .large {
+            width: 63%;
+        }
+
+        .size-2 .large {
+            width: 58.5%;
+        }
+
+        .size-2 .small {
+            width: 40%;
+        }
+
+        .equal-pair {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1.5%;
+
+            img {
+                width: 49.25%;
+                transition: width 0.5s ease-in-out;
+            }
+
+            .small {
+                width: 35.5%;
+            }
+
+            .large {
+                width: 63%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navigation">
+        <img class="logo shadow" src="../images/G Logo.png" />
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../projects/projects.html">Projects</a></li>
+            <li><a href="interests.html">Interests</a></li>
+            <li><a href="../cv/cv.html">CV</a></li>
+            <li><a href="../contact/contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                Pictures of Me
+            </div>
+        </div>
+        <div class="main">
+            <!-- Need to replace the images with low res versions to improve loading time -->
+            <div class="image-container">
+                <img class="shadow small" src="images/1.JPG">
+                <img class="shadow large" src="images/3.JPG" style="float: right;">
+            </div>
+            <div class="image-container size-2">
+                <img class="shadow large" src="images/4.JPG">
+                <img class="shadow small" src="images/2.JPG" style="float: right;">
+            </div>
+            <div class="image-container">
+                <img class="shadow small" src="images/6.JPG">
+                <img class="shadow large" src="images/5.JPG" style="float: right;">
+            </div>
+            <div class="equal-pair">
+                <img class="shadow" src="images/7.JPG">
+                <img class="shadow" src="images/8.JPG" style="float: right;">
+            </div>
+        </div>
+        <div class="background"></div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.image-container').forEach(container => {
+        const images = container.querySelectorAll('img');
+
+        function swapSizes() {
+            images.forEach(img => {
+                img.classList.toggle("small");
+                img.classList.toggle("large");
+            });
+        }
+
+        images.forEach(img => {
+            img.addEventListener("mouseenter", function () {
+                swapSizes();
+            });
+
+            img.addEventListener("touchstart", function (e) {
+                swapSizes();
+                e.preventDefault(); // Prevents double-tap zoom on mobile
+            });
+        });
+    });
+
+    document.querySelectorAll('.equal-pair').forEach(container => {
+        const images = container.querySelectorAll('img');
+
+        function toggleSize(clickedImg) {
+            if (clickedImg.classList.contains("large")) {
+                console.log(clickedImg.classList)
+                // Reset both to equal size
+                images.forEach(img => {
+                    img.classList.remove("large", "small");
+                });
+                console.log(clickedImg.classList)
+
+            } else {
+                console.log("togged")
+                // Make clicked image large and the other small
+                images.forEach(img => {
+                    img.classList.toggle("large", img === clickedImg);
+                    img.classList.toggle("small", img !== clickedImg);
+                });
+            }
+        }
+
+        images.forEach(img => {
+            img.addEventListener("mouseenter", function () {
+                toggleSize(this);
+            });
+
+            img.addEventListener("touchstart", function (e) {
+                toggleSize(this);
+                e.preventDefault(); // Prevents double-tap zoom on mobile
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>
