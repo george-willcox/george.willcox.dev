@@ -6,6 +6,7 @@
     <link rel="icon" href="../images/favicon.png">
     <script async src=../scripts/nav_bar.js></script>
     <script async src=../scripts/accordion.js></script>
+    <script async src=../scripts/image-container.js></script>
     <title>George Willcox</title>
     <style>
         .arrow-list li {
@@ -21,6 +22,34 @@
         .open::before {
             left: -25px !important;
             content: "\25BC\fe0e" !important;
+        }
+
+        .size-1 {
+            img {
+                transition: width 0.5s ease-in-out;
+            }
+
+            .img1 {
+                width: 35.5%;
+            }
+            .img1.small {
+                width: 13.5% !important;
+            }
+
+            .img1.large {
+                width: 63% !important;
+            }
+
+            .img2 {
+                width: 63%;
+            }
+            .img2.small {
+                width: 35.5% !important;
+            }
+
+            .img2.large {
+                width: 85% !important;
+            }
         }
     </style>
 </head>
@@ -148,6 +177,11 @@
                         Just WW2 things really, mostly land vehicles but also some planes and boats too.
                         I'll add pictures later. The Churchill Crocodile is probably my favourite model.
                     </p>
+
+                    <div class="image-container size-1">
+                        <img class="shadow img1" src="images/Hellblaster.jpg">
+                        <img class="shadow img2" src="images/Wraith.jpg" style="float: right;">
+                    </div>
                 </div>
             </ul>
         </div>
