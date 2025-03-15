@@ -81,11 +81,13 @@ body {
     }
 
     .header {
-        padding-top: max(35%, 200px) !important;
+        padding-top: max(20%, 200px) !important;
+        margin-left: 10% !important;
     }
 
     .content {
-        margin-right: 25% !important;
+        margin-left: 5% !important;
+        margin-right: 5% !important;
     }
 }
 
