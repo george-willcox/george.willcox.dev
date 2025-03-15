@@ -304,10 +304,10 @@ a:not(.non-text-link):active {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 1.5%;
+    margin-bottom: 2%;
 
     img {
-        width: 49.25%;
+        width: 49%;
         transition: width 0.5s ease-in-out;
     }
 
